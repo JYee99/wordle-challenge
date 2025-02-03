@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle-Challenge</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="indxe.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header__left">
+        <img src="images/menu.svg" alt="" />
+      </div>
+      <h2>Wordle</h2>
+      <div class="header__right">
+        <img src="images/question.svg" alt="" />
+        <img src="images/chart.svg" alt="" />
+        <img src="images/setting.svg" alt="" />
+      </div>
+    </header>
+    <main>
+      <div id="timer">time: <span id="timer-date">00:00</span></div>
+      <div class="board-row row-0">
+        <div class="board-block" data-index="00"></div>
+        <div class="board-block" data-index="01"></div>
+        <div class="board-block" data-index="02"></div>
+        <div class="board-block" data-index="03"></div>
+        <div class="board-block" data-index="04"></div>
+      </div>
+      <div class="board-row row-1">
+        <div class="board-block" data-index="10"></div>
+        <div class="board-block" data-index="11"></div>
+        <div class="board-block" data-index="12"></div>
+        <div class="board-block" data-index="13"></div>
+        <div class="board-block" data-index="14"></div>
+      </div>
+      <div class="board-row row-2">
+        <div class="board-block" data-index="20"></div>
+        <div class="board-block" data-index="21"></div>
+        <div class="board-block" data-index="22"></div>
+        <div class="board-block" data-index="23"></div>
+        <div class="board-block" data-index="24"></div>
+      </div>
+      <div class="board-row row-3">
+        <div class="board-block" data-index="30"></div>
+        <div class="board-block" data-index="31"></div>
+        <div class="board-block" data-index="32"></div>
+        <div class="board-block" data-index="33"></div>
+        <div class="board-block" data-index="34"></div>
+      </div>
+      <div class="board-row row-4">
+        <div class="board-block" data-index="40"></div>
+        <div class="board-block" data-index="41"></div>
+        <div class="board-block" data-index="42"></div>
+        <div class="board-block" data-index="43"></div>
+        <div class="board-block" data-index="44"></div>
+      </div>
+      <div class="board-row row-5">
+        <div class="board-block" data-index="50"></div>
+        <div class="board-block" data-index="51"></div>
+        <div class="board-block" data-index="52"></div>
+        <div class="board-block" data-index="53"></div>
+        <div class="board-block" data-index="54"></div>
+      </div>
+    </main>
+    <footer>
+      <div class="keyboard-row key-0">
+        <div class="key" data-key="Q">Q</div>
+        <div class="key" data-key="W">W</div>
+        <div class="key" data-key="E">E</div>
+        <div class="key" data-key="R">R</div>
+        <div class="key" data-key="T">T</div>
+        <div class="key" data-key="Q">Y</div>
+        <div class="key" data-key="Q">U</div>
+        <div class="key" data-key="Q">I</div>
+        <div class="key" data-key="Q">O</div>
+        <div class="key" data-key="Q">P</div>
+      </div>
+
+      <div class="keyboard-row key-0">
+        <div class="key" data-key="Q">A</div>
+        <div class="key" data-key="Q">S</div>
+        <div class="key" data-key="Q">D</div>
+        <div class="key" data-key="Q">F</div>
+        <div class="key" data-key="Q">G</div>
+        <div class="key" data-key="Q">H</div>
+        <div class="key" data-key="Q">J</div>
+        <div class="key" data-key="Q">K</div>
+        <div class="key" data-key="Q">L</div>
+      </div>
+
+      <div class="keyboard-row key-0">
+        <div class="key key-enter" data-key="Q">ENTER</div>
+        <div class="key" data-key="Q">Z</div>
+        <div class="key" data-key="Q">X</div>
+        <div class="key" data-key="Q">C</div>
+        <div class="key" data-key="Q">V</div>
+        <div class="key" data-key="Q">B</div>
+        <div class="key" data-key="Q">N</div>
+        <div class="key" data-key="Q">M</div>
+        <div class="key key-back" data-key="Q">
+          <img src="images/backspace.svg" alt="" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
