@@ -49,6 +49,9 @@ main {
   width: 70px;
   height: 70px;
   margin: 5px;
+  font-size: 30px;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
 }
 
 .keyboard-row {
