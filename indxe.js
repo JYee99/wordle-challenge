@@ -7,7 +7,16 @@
 const correct = "APPLE";
 let index = 0;
 let attempts = 0;
+let handletimer;
 function appStart() {
+  const displayGameOver = () => {
+    const div = document.createElement("div");
+    div.innerText = "게임이 종료됐습니다.";
+    div.style =
+      "display: flex; justify-content:center; align-items:center; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -40%); font-size: 30px; font-weight: bold; background-color: white; padding: 20px 30px; border: 1px solid #dadada; border-radius: 10px; box-shadow: 2px 3px 10px rgba(0,0,0,0.15);";
+    document.body.appendChild(div);
+    clearInterval(handletimer);
+  };
   const nextLine = () => {
     if (attempts === 6) {
       gameOver();
@@ -17,7 +26,7 @@ function appStart() {
     index = 0;
   };
   const gameOver = () => {
-    alert("Game Over!");
+    displayGameOver();
     window.removeEventListener("keydown", haneldKeyDown);
   };
   const handleEnterKey = () => {
@@ -39,14 +48,25 @@ function appStart() {
     if (passed === 5) gameOver();
     nextLine();
   };
+
+  const handleBackSpace = () => {
+    if (index > 0) {
+      const preBlock = document.querySelector(
+        `.board-block[data-index="${attempts}${index - 1}"]`
+      );
+      preBlock.innerText = "";
+      index--;
+    }
+  };
+
   const haneldKeyDown = (e) => {
     const key = e.key.toUpperCase();
     const keyCode = e.keyCode;
     const thisBlock = document.querySelector(
       `.board-block[data-index="${attempts}${index}"]`
     );
-
-    if (index === 5) {
+    if (e.key === "Backspace") handleBackSpace();
+    else if (index === 5) {
       if (e.key === "Enter") handleEnterKey();
       else return;
     } else if (keyCode >= 65 && keyCode <= 90) {
@@ -54,6 +74,21 @@ function appStart() {
       index++;
     }
   };
+
+  const startTimer = () => {
+    const startDate = new Date();
+    function setTime() {
+      const date = new Date();
+      const preDate = new Date(date - startDate);
+      const min = preDate.getMinutes().toString().padStart(2, "0");
+      const sec = preDate.getSeconds().toString().padStart(2, "0");
+      const timer = document.querySelector("#timer-date");
+      timer.innerText = `${min}:${sec}`;
+    }
+    handletimer = setInterval(setTime, 1000);
+  };
+
+  startTimer();
   window.addEventListener("keydown", haneldKeyDown);
 }
 appStart();
