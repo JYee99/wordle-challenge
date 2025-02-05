@@ -51,9 +51,11 @@ main {
   margin: 5px;
   font-size: 30px;
   font-weight: bold;
-  transition: all 0.5s ease-in-out;
+  transition: all 1s ease-in-out;
 }
-
+.board-block.success {
+  transform: rotateX(360deg) scale(1.1);
+}
 .keyboard-row {
   display: flex;
   justify-content: center;
@@ -69,6 +71,7 @@ main {
   font-weight: bold;
   padding: 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .key-back {
   height: 83px;
@@ -81,4 +84,17 @@ main {
 }
 .key img {
   width: 30px;
+}
+
+.key.green {
+  background-color: rgb(106, 170, 100);
+  color: #fff;
+}
+.key.yellow {
+  background-color: rgb(201, 180, 88);
+  color: #fff;
+}
+.key.gray {
+  background-color: rgb(120, 124, 126);
+  color: #fff;
 }

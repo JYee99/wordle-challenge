@@ -8,6 +8,10 @@ const correct = "APPLE";
 let index = 0;
 let attempts = 0;
 let handletimer;
+
+const green = "rgb(106, 170, 100)";
+const yellow = "rgb(201, 180, 88)";
+const gray = "rgb(120, 124, 126)";
 function appStart() {
   const displayGameOver = () => {
     const div = document.createElement("div");
@@ -29,6 +33,7 @@ function appStart() {
     displayGameOver();
     window.removeEventListener("keydown", haneldKeyDown);
   };
+
   const handleEnterKey = () => {
     let passed = 0;
     for (let i = 0; i < 5; i++) {
@@ -36,15 +41,30 @@ function appStart() {
         `.board-block[data-index="${attempts}${i}"]`
       );
       const userText = block.innerText;
+      const keyboardUi = document.querySelector(`.key[data-key="${userText}"]`);
+
       const correctText = correct[i];
       if (userText === correctText) {
         passed++;
-        block.style.backgroundColor = "#6aaa64";
+        block.style.backgroundColor = green;
+        keyboardUi.classList.add("green");
+        block.classList.add("success");
       } else if (correct.includes(userText)) {
-        block.style.backgroundColor = "#c9b458";
-      } else block.style.backgroundColor = "#787c7e";
+        block.style.backgroundColor = yellow;
+        if (!keyboardUi.classList.contains("green"))
+          keyboardUi.classList.add("yellow");
+      } else {
+        block.style.backgroundColor = gray;
+        if (
+          !keyboardUi.classList.contains("green") ||
+          !keyboardUi.classList.contains("yellow")
+        )
+          keyboardUi.classList.add("gray");
+      }
+
       block.style.color = "white";
     }
+
     if (passed === 5) gameOver();
     nextLine();
   };
