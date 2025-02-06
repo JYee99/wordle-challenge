@@ -53,8 +53,10 @@ main {
   font-weight: bold;
   transition: all 1s ease-in-out;
 }
+
 .board-block.success {
   transform: rotateX(360deg) scale(1.1);
+  color: #fff;
 }
 .keyboard-row {
   display: flex;
@@ -86,15 +88,16 @@ main {
   width: 30px;
 }
 
-.key.green {
+.green {
   background-color: rgb(106, 170, 100);
   color: #fff;
 }
-.key.yellow {
+.yellow {
   background-color: rgb(201, 180, 88);
   color: #fff;
 }
-.key.gray {
+
+.gray {
   background-color: rgb(120, 124, 126);
   color: #fff;
 }

@@ -4,7 +4,6 @@
 // 3. 존재하면 노란색, 위치도 맞으면 배경색을 초록색으로 표시
 // 4. 게임 종료 판단
 // 5. 상단에 게임 시간 표시
-const correct = "APPLE";
 let index = 0;
 let attempts = 0;
 let handletimer;
@@ -34,8 +33,39 @@ function appStart() {
     window.removeEventListener("keydown", haneldKeyDown);
   };
 
-  const handleEnterKey = () => {
+  // userText === correct[i] 일치 확인.
+  // 위치, 알파벳 일치 === keyboardUi에 green calss 추가.
+  // 알파벳 일치 === keyboardUi에 yellow calss 추가
+  // 불일치 === keyboardUi에 graycalss 추가
+
+  // green calss가 이미 있는 경우, 함수실행 종료
+  // yellow클래스가 이미 있는 경우 위치, 알파벳 일치만 확인 후 함수 종료
+  // gray클래스가 있는 경우 모든 함수 실행
+  const handleColorGreen = (keyboardUi) => {
+    keyboardUi.classList.add("green");
+    if (keyboardUi.classList.contains("green")) {
+      keyboardUi.classList.remove("yellow");
+      keyboardUi.classList.remove("gray");
+      return;
+    }
+  };
+  const handleColorYellow = (keyboardUi) => {
+    if (keyboardUi.classList.contains("green")) return;
+    keyboardUi.classList.add("yellow");
+  };
+  const handleColorGray = (keyboardUi) => {
+    if (keyboardUi.classList.contains("green")) return;
+    if (keyboardUi.classList.contains("yellow")) return;
+    keyboardUi.classList.add("gray");
+  };
+
+  const handleEnterKey = async () => {
     let passed = 0;
+
+    const 응답 = await fetch("/answer");
+    const correctObj = await 응답.json();
+    const correct = correctObj.answer;
+
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.board-block[data-index="${attempts}${i}"]`
@@ -47,22 +77,15 @@ function appStart() {
       if (userText === correctText) {
         passed++;
         block.style.backgroundColor = green;
-        keyboardUi.classList.add("green");
         block.classList.add("success");
+        handleColorGreen(keyboardUi);
       } else if (correct.includes(userText)) {
-        block.style.backgroundColor = yellow;
-        if (!keyboardUi.classList.contains("green"))
-          keyboardUi.classList.add("yellow");
+        block.classList.add("yellow");
+        handleColorYellow(keyboardUi);
       } else {
-        block.style.backgroundColor = gray;
-        if (
-          !keyboardUi.classList.contains("green") ||
-          !keyboardUi.classList.contains("yellow")
-        )
-          keyboardUi.classList.add("gray");
+        block.classList.add("gray");
+        handleColorGray(keyboardUi);
       }
-
-      block.style.color = "white";
     }
 
     if (passed === 5) gameOver();
